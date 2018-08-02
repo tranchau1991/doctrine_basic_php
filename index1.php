@@ -18,6 +18,7 @@ $c = new Product;
 $c->setName('Test Component 2');
 $em->persist($c);
 $data= $em->flush();
+$em->clear();
 //ok
 
 //query data
