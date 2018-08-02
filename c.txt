@@ -1,0 +1,41 @@
+//For command line
+
+D:\xampp\htdocs\ci\phporm>php vendor/doctrine/orm/bin/doctrine orm:convert-mapping --from-database --filter=Home annotation src
+Processing entity "Home"
+
+Exporting "annotation" mapping information to "D:\xampp\htdocs\ci\phporm\src"
+
+
+
+D:\xampp\htdocs\ci\phporm>php vendor/doctrine/orm/bin/doctrine orm:schema-tool:create --dump-sql
+CREATE TABLE products (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NUL
+L, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE =
+InnoDB;
+
+
+//for run php
+<?php
+
+require_once 'bootstrap.php';
+include_once 'src/Product.php';
+
+$em =$entityManager;
+//var_dump($em);
+
+
+//$article = $em->find('Product', 2); //ok
+//var_dump($article);die;
+
+
+
+// $c = new Product();
+$c = new Product;
+$c->setName('Test Component 2');
+$em->persist($c);
+$data= $em->flush();
+//ok
+
+//query data
+//$data = $em->getRepository('Product')->findBy(array('id' => 1)); //ok
+
+var_dump($data);
